@@ -1,1 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+.full-width {
+  width: 100%;
+}
+
+.mat-tab-label {
+  width: 33.3333333%;
+}
