@@ -1,0 +1,14 @@
+<div *ngIf="data" class="row">
+  <div class="col-sm-12">
+    <ngx-charts-line-chart [scheme]="tempColorScheme" [results]="temperatures" [gradient]="gradient" [xAxis]="showXAxis" [yAxis]="showYAxis"
+      [legend]="showLegend" [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="tempXAxisLabel"
+      [yAxisLabel]="tempYAxisLabel" [autoScale]="autoScale" (select)="onSelect($event)">
+    </ngx-charts-line-chart>
+  </div>
+  <div class="col-sm-12">
+    <ngx-charts-line-chart [scheme]="pcpColorScheme" [results]="pcpChances" [gradient]="gradient" [xAxis]="showXAxis" [yAxis]="showYAxis"
+      [legend]="showLegend" [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="pcpXAxisLabel"
+      [yAxisLabel]="pcpYAxisLabel" [autoScale]="autoScale" (select)="onSelect($event)">
+    </ngx-charts-line-chart>
+  </div>
+</div>

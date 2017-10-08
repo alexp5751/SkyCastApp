@@ -10,22 +10,14 @@ import { Subscription } from 'rxjs/Subscription';
   providers: [DarkSkyService]
 })
 export class WeatherComponent implements OnDestroy {
-  latitude: number = 0.0;
-  longitude: number = 0.0;
   subscription: Subscription;
 
   constructor(private locationUpdateService: LocationUpdateService, private ref: ChangeDetectorRef, private darkskyService: DarkSkyService) {
     this.subscription = locationUpdateService.locationUpdated$.subscribe(
       res => {
-        this.latitude = res.latitude;
-        this.longitude = res.longitude;
-        this.loadWeather();
+        this.darkskyService.updateWeather(res.latitude, res.longitude);
         ref.detectChanges();
       });
-  }
-
-  loadWeather() {
-    this.darkskyService.updateWeather(this.latitude, this.longitude, Math.floor(Date.now() / 1000));
   }
 
   ngOnDestroy() {

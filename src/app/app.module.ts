@@ -2,23 +2,27 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatInputModule, MatButtonModule, MatTabsModule } from '@angular/material';
-
+import { MatInputModule, MatButtonModule, MatTabsModule, MatTableModule, MatExpansionModule } from '@angular/material';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
+import { MapComponent } from './map.component';
 import { WeatherComponent } from './weather.component';
 import { CurrentlyComponent } from './currently.component';
 import { HistoricComponent } from './historic.component';
 import { ForecastComponent } from './forecast.component';
+import { ChartsComponent } from './charts.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    MapComponent,
     WeatherComponent,
     CurrentlyComponent,
     HistoricComponent,
-    ForecastComponent
+    ForecastComponent,
+    ChartsComponent
   ],
   imports: [
     BrowserModule,
@@ -27,7 +31,10 @@ import { ForecastComponent } from './forecast.component';
     BrowserAnimationsModule,
     MatInputModule,
     MatButtonModule,
-    MatTabsModule
+    MatTabsModule,
+    MatTableModule,
+    MatExpansionModule,
+    NgxChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

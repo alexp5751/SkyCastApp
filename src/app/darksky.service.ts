@@ -11,9 +11,10 @@ export class DarkSkyService {
 
     constructor(private http: HttpClient) { }
 
-    updateWeather(latitude: number, longitude: number, time: number) {
-        this.http.get('http://localhost:8080/weather/' + latitude + ',' + longitude + ',' + time).subscribe(
+    updateWeather(latitude: number, longitude: number) {
+        this.http.get('http://localhost:8080/weather/' + latitude + ',' + longitude).subscribe(
             weather => {
+                console.log(weather);
                 this.weatherUpdatedSource.next(weather);
             },
             err => {

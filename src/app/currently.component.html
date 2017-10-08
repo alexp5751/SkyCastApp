@@ -1,1 +1,46 @@
-{{ currentWeather.temperature }}
+<div *ngIf="current">
+  <div class="row">
+    <div class="col-sm-6 col-md-offset-2 col-md-4">
+      <img class="pull-right" src="./assets/weather-icons-png/{{current.icon}}.png">
+    </div>
+    <div class="col-sm-6 col-md-4">
+      <p>{{current.summary}}</p>
+      <p>{{current.temperature}}</p>
+      <p>Feels like {{current.apparentTemperature}}</p>
+      <p>{{current.precipProbability * 100}}% chance of rain</p>
+      <p>{{current.humidity * 100}}% humidity</p>
+      <p>{{current.windSpeed}} mph winds</p>
+    </div>
+  </div>
+  <div class="center-block">
+    <mat-table #table [dataSource]="dataSource">
+      <ng-container matColumnDef="time">
+        <mat-header-cell *matHeaderCellDef> Time </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{prettifyTime(element.time)}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="icon">
+        <mat-header-cell *matHeaderCellDef> Icon </mat-header-cell>
+        <mat-cell *matCellDef="let element"> <img class="hourly-table-row" src="./assets/large-weather-icons/{{element.icon}}.png"> </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="temperature">
+        <mat-header-cell *matHeaderCellDef> Temperature </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{round(element.temperature)}} <span class="text-muted">{{round(element.apparentTemperature)}}</span></mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="precipProbability">
+        <mat-header-cell *matHeaderCellDef> Precipitation Chance </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{round(element.precipProbability * 100)}}% </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="windSpeed">
+        <mat-header-cell *matHeaderCellDef> Wind Speed </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.windSpeed}} mph </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+  </div>
+</div>

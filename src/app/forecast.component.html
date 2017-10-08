@@ -1,1 +1,21 @@
-{{ forecastWeather.temperature }}
+<div class="headers-align" multi="false">
+  <mat-expansion-panel *ngFor="let day of forecastWeather; let i=index; trackBy: trackById" close [expanded]="step === i" (opened)="setStep(i)">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        {{prettifyTime(day.time)}}
+      </mat-panel-title>
+      <mat-panel-description>
+        {{day.summary}}
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    <p>{{day.apparentTemperatureHigh}}</p>
+    <p>{{day.apparentTemperatureLow}}</p>
+    <p>{{day.humidity}}</p>
+    <p>{{day.icon}}</p>
+    <p>{{day.precipProbability}}</p>
+    <p>{{day.temperatureHigh}}</p>
+    <p>{{day.temperatureLow}}</p>
+    <p>{{day.windSpeed}}</p>
+  </mat-expansion-panel>
+</div>

@@ -1,10 +1,45 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import '~@angular/material/prebuilt-themes/indigo-pink.css';
+#map {
+  height: 20em;
+}
+
 .full-width {
   width: 100%;
 }
 
 .mat-tab-label {
-  width: 33.3333333%;
+  width: 33.33333333%;
+}
+
+.mat-tab-body-content {
+  overflow-x: hidden !important;
+}
+
+.hourly-table-row {
+  height: 40px;
+}
+
+div.mat-expansion-panel-content:not(.mat-expanded) {
+  height: 0px;
+  visibility: hidden;
+}
+
+.mat-expansion-panel-header:not(.mat-expanded) {
+  height: 48px;
+}
+
+.mat-expansion-panel-header {
+  height: 64px;
+}
+
+.headers-align .mat-expansion-panel-header-title,
+.headers-align .mat-expansion-panel-header-description {
+  flex-basis: 0;
+}
+
+.example-headers-align .mat-expansion-panel-header-description {
+  justify-content: space-between;
+  align-items: center;
 }
