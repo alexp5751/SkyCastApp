@@ -36,4 +36,8 @@ export class HistoricComponent implements OnInit {
         var prettyTime = time.toLocaleString('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
         return prettyTime;
     }
+
+    sayHi() {
+        this.ref.detectChanges();
+    }
 }

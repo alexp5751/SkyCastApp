@@ -36,14 +36,12 @@ export class ChartsComponent implements OnInit, OnChanges {
     constructor() { }
 
     onSelect(event) {
-        console.log(event);
+        //console.log(event);
     }
 
     ngOnInit() { }
 
     ngOnChanges() {
-        console.log("Changed!");
-
         this.temperatures = this.buildTemperatures();
         this.pcpChances = this.buildPcpChances();
 

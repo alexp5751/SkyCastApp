@@ -1,17 +1,16 @@
-const express = require('express');
-const app = express();
+var express = require('express');
+var proxy = require('http-proxy-middleware');
 
-const forceSSL = function () {
-  return function (req, res, next) {
-    if (req.headers['x-forwarded-proto'] !== 'https') {
-      return res.redirect(
-        ['https://', req.get('Host'), req.url].join('')
-      );
-    }
-    next();
-  }
-}
+var app = express();
 
-app.use(forceSSL());
+app.use('/api', proxy({
+  target: 'https://sky-cast-go-proxy.herokuapp.com/',
+  router: {
+    'localhost:3000': 'http://localhost:8080'
+  },
+  changeOrigin: true,
+  logLevel: 'debug'
+}));
 app.use(express.static(__dirname + '/dist'));
-app.listen(process.env.PORT || 8080);
+
+app.listen(process.env.port || 3000);

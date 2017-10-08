@@ -25,6 +25,7 @@ export class ForecastComponent implements OnInit {
 
     setStep(i: number) {
         this.step = i;
+        console.log(this.step);
         this.ref.detectChanges();
     }
 
@@ -32,5 +33,9 @@ export class ForecastComponent implements OnInit {
         var time: Date = new Date(x * 1000);
         var prettyTime = time.toLocaleString('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
         return prettyTime;
+    }
+
+    sayHi() {
+        this.ref.detectChanges();
     }
 }

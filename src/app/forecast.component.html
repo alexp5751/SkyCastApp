@@ -1,5 +1,5 @@
-<div class="headers-align" multi="false">
-  <mat-expansion-panel *ngFor="let day of forecastWeather; let i=index;" close [expanded]="step === i" (opened)="setStep(i)">
+<mat-accordion class="headers-align" [multi]="true">
+  <mat-expansion-panel *ngFor="let day of forecastWeather" (opened)="sayHi()" (closed)="sayHi()">
     <mat-expansion-panel-header>
       <mat-panel-title>
         {{prettifyTime(day.time)}}
@@ -18,4 +18,4 @@
     <p>{{day.temperatureLow}}</p>
     <p>{{day.windSpeed}}</p>
   </mat-expansion-panel>
-</div>
+</mat-accordion>
