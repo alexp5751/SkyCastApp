@@ -1,5 +1,5 @@
 <div class="headers-align" multi="false">
-  <mat-expansion-panel *ngFor="let day of forecastWeather; let i=index; trackBy: trackById" close [expanded]="step === i" (opened)="setStep(i)">
+  <mat-expansion-panel *ngFor="let day of forecastWeather; let i=index;" close [expanded]="step === i" (opened)="setStep(i)">
     <mat-expansion-panel-header>
       <mat-panel-title>
         {{prettifyTime(day.time)}}
