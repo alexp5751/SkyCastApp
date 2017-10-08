@@ -12,7 +12,7 @@ export class DarkSkyService {
     constructor(private http: HttpClient) { }
 
     updateWeather(latitude: number, longitude: number) {
-        this.http.get('http://localhost:8080/weather/' + latitude + ',' + longitude).subscribe(
+        this.http.get('https://sky-cast-go-proxy.herokuapp.com/weather/' + latitude + ',' + longitude).subscribe(
             weather => {
                 console.log(weather);
                 this.weatherUpdatedSource.next(weather);
