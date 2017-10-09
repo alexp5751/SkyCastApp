@@ -91,5 +91,6 @@ div.mat-expansion-panel-content:not(.mat-expanded) {
 .footer-text {
   padding: 20px;
   text-align: center;
+  background-color: #eeeeee;
   margin-bottom: -20px;
 }

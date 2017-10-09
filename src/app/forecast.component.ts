@@ -12,6 +12,7 @@ export class ForecastComponent implements OnInit {
     subscription: Subscription;
     forecastWeather: object[] = [];
     step: number = 0;
+    resized: boolean = false;
 
     constructor(private darkskyService: DarkSkyService, private ref: ChangeDetectorRef) {
         this.subscription = darkskyService.weatherUpdated$.subscribe(
@@ -30,6 +31,10 @@ export class ForecastComponent implements OnInit {
     }
 
     update() {
+        if (!this.resized) {
+            window.dispatchEvent(new Event('resize'));
+            this.resized = true;
+        }
         this.ref.detectChanges();
     }
 
