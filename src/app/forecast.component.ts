@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DarkSkyService } from './darksky.service'
+import { DarkSkyService } from './darksky.service';
 import { ChangeDetectorRef } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 
@@ -17,17 +17,11 @@ export class ForecastComponent implements OnInit {
         this.subscription = darkskyService.weatherUpdated$.subscribe(
             res => {
                 this.forecastWeather = res['forecast']['daily']['data'];
-                this.setStep(-1);
+                ref.detectChanges();
             });
     }
 
     ngOnInit() { }
-
-    setStep(i: number) {
-        this.step = i;
-        console.log(this.step);
-        this.ref.detectChanges();
-    }
 
     prettifyTime(x: number) {
         var time: Date = new Date(x * 1000);
@@ -35,7 +29,9 @@ export class ForecastComponent implements OnInit {
         return prettyTime;
     }
 
-    sayHi() {
+    update() {
         this.ref.detectChanges();
     }
+
+
 }

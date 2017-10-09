@@ -1,5 +1,6 @@
+<h2>Last Week's Weather</h2>
 <mat-accordion class="headers-align" [multi]="true">
-  <mat-expansion-panel *ngFor="let day of historicWeather" (opened)="sayHi()" (closed)="sayHi()">
+  <mat-expansion-panel *ngFor="let day of historicWeather; let i=index" (opened)="update()" (closed)="update()">
     <mat-expansion-panel-header>
       <mat-panel-title>
         {{prettifyTime(day.time)}}
@@ -9,17 +10,28 @@
       </mat-panel-description>
     </mat-expansion-panel-header>
 
-    <p>{{day.apparentTemperatureHigh}}</p>
-    <p>{{day.apparentTemperatureLow}}</p>
-    <p>{{day.humidity}}</p>
-    <p>{{day.icon}}</p>
-    <p>{{day.precipProbability}}</p>
-    <p>{{day.temperatureHigh}}</p>
-    <p>{{day.temperatureLow}}</p>
-    <p>{{day.windSpeed}}</p>
+    <div class="row">
+      <div class="col-xs-12 col-sm-6 icon-backing">
+        <img src="./assets/weather-icons-png/{{day.icon}}.png">
+      </div>
+      <div class="col-xs-12 col-sm-6 current-info">
+        <h3>Low: {{day.temperatureLow}} °F</h3>
+        <h3>High: {{day.temperatureHigh}} °F</h3>
+        <p>{{day.precipProbability * 100}}% chance of rain</p>
+        <p>{{day.humidity * 100}}% humidity</p>
+        <p>{{day.windSpeed}} mph winds</p>
+      </div>
+      <div class="col-xs-12 col-sm-12 current-info">
+        <ngx-charts-line-chart [scheme]="colors" [results]="hourly[i]" [gradient]="gradient" [xAxis]="showXAxis" [yAxis]="showYAxis"
+          [legend]="showLegend" [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel"
+          [yAxisLabel]="yAxisLabel" [autoScale]="autoScale" (select)="onSelect($event)">
+        </ngx-charts-line-chart>
+      </div>
+    </div>
   </mat-expansion-panel>
 </mat-accordion>
 <div>
+  <h2>Daily Data</h2>
   <charts [data]=" historicWeather ">
   </charts>
 </div>

@@ -11,16 +11,38 @@ import { Subscription } from 'rxjs/Subscription';
 export class HistoricComponent implements OnInit {
     subscription: Subscription;
     historicWeather: object[] = [];
+    hourly: object[] = [];
     step: number = 0;
+
+    // universal options
+    showXAxis = true;
+    showYAxis = true;
+    gradient = false;
+    showLegend = false;
+    showXAxisLabel = true;
+    showYAxisLabel = true;
+    autoScale = true;
+
+    // temperature options
+    xAxisLabel = 'Time';
+    yAxisLabel = 'Temperature';
+    colors = {
+        domain: ['#FF4C4C', '#4C4CFF', '#FF9999', '#9999FF']
+    };
 
     constructor(private darkskyService: DarkSkyService, private ref: ChangeDetectorRef) {
         this.subscription = darkskyService.weatherUpdated$.subscribe(
             res => {
+                console.log(res);
                 this.historicWeather = res['historic'].map(function (x) {
-                    x['daily']['data'][0]['hourly'] = x['hourly'];
+                    x['daily']['data'][0]['hourly'] = x['hourly']['data'];
                     return x['daily']['data'][0];
                 });
-                this.setStep(-1);
+                this.hourly = [];
+                for (var i: number = 0; i < this.historicWeather.length; i++) {
+                    this.hourly.push(this.getData(this.historicWeather[i]['hourly']));
+                }
+                this.ref.detectChanges();
             });
     }
 
@@ -37,7 +59,27 @@ export class HistoricComponent implements OnInit {
         return prettyTime;
     }
 
-    sayHi() {
+    update() {
         this.ref.detectChanges();
+    }
+
+    getData(hourly: any[]) {
+        var data = {
+            'name': 'Temperature',
+            'series': hourly.map(function (x: any) {
+                console.log(x['time']);
+                console.log(x['temperature'])
+                return {
+                    "name": new Date(x['time'] * 1000).toLocaleTimeString(),
+                    "value": x['temperature']
+                }
+            })
+        }
+        console.log(data);
+        return [data];
+    }
+
+    onSelect(event) {
+        //console.log(event);
     }
 }

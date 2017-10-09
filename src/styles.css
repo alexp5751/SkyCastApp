@@ -5,6 +5,10 @@
   height: 20em;
 }
 
+.body {
+  background: #eeeeee;
+}
+
 .full-width {
   width: 100%;
 }
@@ -42,4 +46,43 @@ div.mat-expansion-panel-content:not(.mat-expanded) {
 .example-headers-align .mat-expansion-panel-header-description {
   justify-content: space-between;
   align-items: center;
+}
+
+.icon-backing {
+  height: 250px;
+  background: #dddddd;
+}
+
+.icon-backing img {
+  float: right;
+}
+
+.current-info {
+  height: 250px;
+  background: #dddddd;
+  overflow-x: hidden;
+}
+
+.line-chart {
+  height: 500px;
+}
+
+.mat-expansion-panel-body {
+  overflow-x: hidden !important;
+}
+
+@media only screen and (max-width: 769px) {
+  .icon-backing {
+    text-align: center;
+  }
+  .icon-backing img {
+    float: none;
+  }
+  .current-info {
+    text-align: center;
+  }
+}
+
+#map {
+  height: 500px;
 }

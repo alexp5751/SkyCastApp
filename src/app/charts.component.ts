@@ -88,6 +88,7 @@ export class ChartsComponent implements OnInit, OnChanges {
                 return item;
             })
         }
+        console.log([highTemperatures, lowTemperatures, apparentHighTemperatures, apparentLowTemperatures]);
         return [highTemperatures, lowTemperatures, apparentHighTemperatures, apparentLowTemperatures];
     }
 

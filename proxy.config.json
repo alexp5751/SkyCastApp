@@ -1,7 +1,8 @@
 {
   "/api/*": {
     "target": "https://sky-cast-go-proxy.herokuapp.com/",
-    "secure": true,
+    "secure": false,
+    "changeOrigin": true,
     "logLevel": "debug"
   }
 }
