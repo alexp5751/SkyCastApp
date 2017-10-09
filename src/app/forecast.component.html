@@ -1,5 +1,5 @@
-<h2>Next Week's Weather</h2>
 <div *ngIf="forecastWeather">
+  <h2>Next Week's Weather</h2>
   <mat-accordion class="headers-align" [multi]="true">
     <mat-expansion-panel *ngFor="let day of forecastWeather" (opened)="update()" (closed)="update()">
       <mat-expansion-panel-header>
