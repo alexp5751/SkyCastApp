@@ -17,8 +17,7 @@ export class MapComponent {
     marker: any;
     searches: string[] = [];
     name: string;
-    saveMessage: string;
-    loadMessage: string;
+    apiMessage: string;
 
     constructor(private locationUpdateService: LocationUpdateService, private ref: ChangeDetectorRef, private http: HttpClient) { }
 
@@ -100,10 +99,11 @@ export class MapComponent {
             this.http.post('/api/save', body).subscribe(
                 res => {
                     console.log(res);
-                    this.saveMessage = 'Searches successfully saved for ' + this.name + '.';
+                    this.apiMessage = 'Searches successfully saved for ' + this.name + '.';
                 },
                 err => {
                     console.log(err);
+                    this.apiMessage = 'Something went wrong saving searches for ' + this.name + '.';
 
                 }
             );
@@ -117,10 +117,11 @@ export class MapComponent {
             this.http.get('/api/load/' + this.name).subscribe(
                 res => {
                     this.searches = res['searches'];
-                    this.loadMessage = 'Searches successfully loaded for ' + this.name + '. Check the recent searches selection.';
+                    this.apiMessage = 'Searches successfully loaded for ' + this.name + '. Check the recent searches selection.';
                 },
                 err => {
                     console.log(err);
+                    this.apiMessage = 'No searches saved for ' + this.name + '.';
                 }
             );
         } else {
