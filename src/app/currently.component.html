@@ -5,7 +5,7 @@
       <img src="./assets/weather-icons-png/{{current.icon}}.png">
     </div>
     <div class="col-xs-12 col-sm-6 current-info">
-      <h2>{{current.temperature}} °F</h2>
+      <h2>{{current.summary}}: {{current.temperature}} °F</h2>
       <h3>Feels like {{current.apparentTemperature}} °F</h3>
       <p>{{current.precipProbability * 100}}% chance of rain</p>
       <p>{{current.humidity * 100}}% humidity</p>
@@ -45,4 +45,7 @@
       <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
     </mat-table>
   </div>
+</div>
+<div *ngIf="!current">
+  <h2>Click on the map or search an address above!</h2>
 </div>

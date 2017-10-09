@@ -3,6 +3,22 @@ var app = express();
 var request = require('request');
 var async = require('async');
 var bodyParser = require('body-parser');
+var jsonfile = require('jsonfile');
+
+var searches;
+jsonfile.readFile('./searches.json', function (err, obj) {
+  if (err) {
+    console.log(err);
+    searches = {};
+  } else {
+    searches = obj;
+  }
+});
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
 
 app.get('/api/weather/:latitude,:longitude', function (req, res) {
   var latitude = req.params['latitude'],
@@ -56,6 +72,35 @@ app.get('/api/weather/:latitude,:longitude', function (req, res) {
   });
 });
 
+app.post('/api/save', function (req, res) {
+  console.log(req.body);
+  searches[req.body.name] = req.body.searches;
+  jsonfile.writeFile('./searches.json', searches, function (err) {
+    if (err) {
+      console.error(err);
+      res.status(500).send({
+        'errorMsg': 'Something went wrong. Check server logs.'
+      });
+    } else {
+      res.status(200).send({
+        'successMsg': "Saved."
+      });
+    }
+  })
+});
+
+app.get('/api/load/:name', function (req, res) {
+  if (searches[req.params['name']]) {
+    res.json({
+      'searches': searches[req.params['name']]
+    });
+  } else {
+    res.status(404).send({
+      'errorMsg': "No searches found for user."
+    });
+  }
+});
+
 function getForecastWeather(lat, long, callback) {
   request('https://api.darksky.net/forecast/' + process.env.DARKSKY_APIKEY + '/' + lat + ',' + long, function (error, response, body) {
     if (error) {
@@ -77,6 +122,6 @@ function getTimeMachineWeather(lat, long, time, callback) {
 }
 
 
-app.use(bodyParser.json());
+
 app.use(express.static(__dirname + '/dist'));
 app.listen(process.env.PORT || 3000);

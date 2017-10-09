@@ -33,7 +33,6 @@ export class HistoricComponent implements OnInit {
     constructor(private darkskyService: DarkSkyService, private ref: ChangeDetectorRef) {
         this.subscription = darkskyService.weatherUpdated$.subscribe(
             res => {
-                console.log(res);
                 this.historicWeather = res['historic'].map(function (x) {
                     x['daily']['data'][0]['hourly'] = x['hourly']['data'];
                     return x['daily']['data'][0];
@@ -43,6 +42,7 @@ export class HistoricComponent implements OnInit {
                     this.hourly.push(this.getData(this.historicWeather[i]['hourly']));
                 }
                 this.ref.detectChanges();
+                window.dispatchEvent(new Event('resize'));
             });
     }
 
@@ -67,19 +67,12 @@ export class HistoricComponent implements OnInit {
         var data = {
             'name': 'Temperature',
             'series': hourly.map(function (x: any) {
-                console.log(x['time']);
-                console.log(x['temperature'])
                 return {
                     "name": new Date(x['time'] * 1000).toLocaleTimeString(),
                     "value": x['temperature']
                 }
             })
         }
-        console.log(data);
         return [data];
-    }
-
-    onSelect(event) {
-        //console.log(event);
     }
 }

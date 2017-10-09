@@ -84,5 +84,6 @@ div.mat-expansion-panel-content:not(.mat-expanded) {
 }
 
 #map {
-  height: 500px;
+  height: 400px;
+  margin-top: 15px;
 }

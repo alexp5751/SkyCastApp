@@ -1,4 +1,26 @@
 <div class="row">
+  <div class="col-xs-12 col-sm-4">
+    <mat-form-field class="full-width">
+      <mat-select placeholder="Recent Searches" [(ngModel)]="address" name="food">
+        <mat-option *ngFor="let search of searches" [value]="search">
+          {{search}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div class="col-xs-12 col-sm-4">
+    <mat-form-field class="full-width">
+      <input matInput placeholder="Username" [(ngModel)]="name">
+    </mat-form-field>
+  </div>
+  <div class="col-xs-12 col-sm-2">
+    <button class="full-width" mat-raised-button color="primary" (click)="save()">Save</button>
+    <p>{{saveMessage}}</p>
+  </div>
+  <div class="col-xs-12 col-sm-2">
+    <button class="full-width" mat-raised-button color="primary" (click)="load()">Load</button>
+    <p>{{loadMessage}}</p>
+  </div>
   <div class="col-xs-12 col-sm-6">
     <mat-form-field class="full-width">
       <input matInput placeholder="Address or Location" [(ngModel)]="address">

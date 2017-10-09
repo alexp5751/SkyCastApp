@@ -1,26 +1,31 @@
 <h2>Next Week's Weather</h2>
-<mat-accordion class="headers-align" [multi]="true">
-  <mat-expansion-panel *ngFor="let day of forecastWeather" (opened)="update()" (closed)="update()">
-    <mat-expansion-panel-header>
-      <mat-panel-title>
-        {{prettifyTime(day.time)}}
-      </mat-panel-title>
-      <mat-panel-description>
-        {{day.summary}}
-      </mat-panel-description>
-    </mat-expansion-panel-header>
+<div *ngIf="forecastWeather">
+  <mat-accordion class="headers-align" [multi]="true">
+    <mat-expansion-panel *ngFor="let day of forecastWeather" (opened)="update()" (closed)="update()">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          {{prettifyTime(day.time)}}
+        </mat-panel-title>
+        <mat-panel-description>
+          {{day.summary}}
+        </mat-panel-description>
+      </mat-expansion-panel-header>
 
-    <div class="row">
-      <div class="col-xs-12 col-sm-6 icon-backing">
-        <img src="./assets/weather-icons-png/{{day.icon}}.png">
+      <div class="row">
+        <div class="col-xs-12 col-sm-6 icon-backing">
+          <img src="./assets/weather-icons-png/{{day.icon}}.png">
+        </div>
+        <div class="col-xs-12 col-sm-6 current-info">
+          <h3>High: {{day.temperatureHigh}} °F</h3>
+          <h3>Low: {{day.temperatureLow}} °F</h3>
+          <p>{{day.precipProbability * 100}}% chance of rain</p>
+          <p>{{day.humidity * 100}}% humidity</p>
+          <p>{{day.windSpeed}} mph winds</p>
+        </div>
       </div>
-      <div class="col-xs-12 col-sm-6 current-info">
-        <h3>Low: {{day.temperatureLow}} °F</h3>
-        <h3>High: {{day.temperatureHigh}} °F</h3>
-        <p>{{day.precipProbability * 100}}% chance of rain</p>
-        <p>{{day.humidity * 100}}% humidity</p>
-        <p>{{day.windSpeed}} mph winds</p>
-      </div>
-    </div>
-  </mat-expansion-panel>
-</mat-accordion>
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>
+<div *ngIf="!forecastWeather">
+  <h2>Click on the map or search an address above!</h2>
+</div>

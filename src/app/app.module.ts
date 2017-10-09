@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatInputModule, MatButtonModule, MatTabsModule, MatTableModule, MatExpansionModule, MatGridListModule } from '@angular/material';
+import { MatInputModule, MatButtonModule, MatTabsModule, MatTableModule, MatExpansionModule, MatGridListModule, MatSelectModule } from '@angular/material';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -35,6 +35,7 @@ import { ChartsComponent } from './charts.component';
     MatTableModule,
     MatExpansionModule,
     MatGridListModule,
+    MatSelectModule,
     NgxChartsModule
   ],
   providers: [],

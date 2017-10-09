@@ -11,6 +11,7 @@ import { Subscription } from 'rxjs/Subscription';
 })
 export class WeatherComponent implements OnDestroy {
   subscription: Subscription;
+  resized: boolean = false;
 
   constructor(private locationUpdateService: LocationUpdateService, private ref: ChangeDetectorRef, private darkskyService: DarkSkyService) {
     this.subscription = locationUpdateService.locationUpdated$.subscribe(
@@ -23,5 +24,12 @@ export class WeatherComponent implements OnDestroy {
   ngOnDestroy() {
     // prevent memory leak when component destroyed
     this.subscription.unsubscribe();
+  }
+
+  resize() {
+    if (!this.resized) {
+      window.dispatchEvent(new Event('resize'));
+      this.resized = true;
+    }
   }
 }

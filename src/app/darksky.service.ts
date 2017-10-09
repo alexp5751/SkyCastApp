@@ -14,6 +14,7 @@ export class DarkSkyService {
     updateWeather(latitude: number, longitude: number) {
         this.http.get('/api/weather/' + latitude + ',' + longitude).subscribe(
             weather => {
+                console.log(weather);
                 this.weatherUpdatedSource.next(weather);
             },
             err => {

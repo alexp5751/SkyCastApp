@@ -28,16 +28,14 @@ export class ChartsComponent implements OnInit, OnChanges {
 
     // precipChance options
     pcpXAxisLabel = 'Date';
-    pcpYAxisLabel = 'Precipitation Chance'
+    pcpYAxisLabel = 'Percentage'
     pcpColorScheme = {
         domain: ['#000066', '#CCCCFF']
     }
 
     constructor() { }
 
-    onSelect(event) {
-        //console.log(event);
-    }
+    onSelect(event) { }
 
     ngOnInit() { }
 
@@ -88,7 +86,6 @@ export class ChartsComponent implements OnInit, OnChanges {
                 return item;
             })
         }
-        console.log([highTemperatures, lowTemperatures, apparentHighTemperatures, apparentLowTemperatures]);
         return [highTemperatures, lowTemperatures, apparentHighTemperatures, apparentLowTemperatures];
     }
 
