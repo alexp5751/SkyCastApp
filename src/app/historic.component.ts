@@ -10,7 +10,7 @@ import { Subscription } from 'rxjs/Subscription';
 
 export class HistoricComponent implements OnInit {
     subscription: Subscription;
-    historicWeather: object[] = [];
+    historicWeather: object[];
     hourly: object[] = [];
     step: number = 0;
 

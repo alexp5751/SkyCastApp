@@ -10,7 +10,7 @@ import { Subscription } from 'rxjs/Subscription';
 
 export class ForecastComponent implements OnInit {
     subscription: Subscription;
-    forecastWeather: object[] = [];
+    forecastWeather: object[];
     step: number = 0;
     resized: boolean = false;
 
